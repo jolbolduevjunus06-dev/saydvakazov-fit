@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PULSE FIT | Премиальный Спортивный Клуб</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF5722',
+                            neon: '#FF3D00',
+                            dark: '#0D0D0D',
+                            card: '#18181B',
+                            cardHover: '#27272A',
+                            accent: '#FF7043'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Кастомные элементы дизайна и эффекты glow */
+        .glow-orange {
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.4);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(255, 87, 34, 0.6);
+        }
+        .gradient-overlay {
+            background: linear-gradient(180deg, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.95) 100%);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-100 font-sans antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- ================= HEADER / НАВИГАЦИЯ ================= -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-zinc-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Логотип -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 flex items-center justify-center text-black font-black text-xl group-hover:scale-105 transition-transform shadow-lg glow-orange">
+                    <i class="fa-solid => fa-bolt"></i>
+                </div>
+                <span class="text-2xl font-black tracking-wider uppercase">PULSE<span class="text-brand-orange">FIT</span></span>
+            </a>
+
+            <!-- Навигация (Desktop) -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide uppercase">
+                <a href="#trainings" class="hover:text-brand-orange transition-colors">Тренировки</a>
+                <a href="#trainers" class="hover:text-brand-orange transition-colors">Тренеры</a>
+                <a href="#schedule" class="hover:text-brand-orange transition-colors">Расписание</a>
+                <a href="#gallery" class="hover:text-brand-orange transition-colors">Галерея</a>
+                <a href="#contacts" class="hover:text-brand-orange transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Правый блок: Номер телефона и Кнопка Записи -->
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="tel:+996779609069" class="flex items-center gap-2 text-sm font-bold hover:text-brand-orange transition-colors">
+                    <i class="fa-solid fa-phone text-brand-orange animate-pulse"></i>
+                    <span>+996 779 609 069</span>
+                </a>
+                <button onclick="openBookingModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-neon text-white font-bold text-sm tracking-wide shadow-md hover:glow-orange hover:scale-105 active:scale-95 transition-all">
+                    Записаться
+                </button>
+            </div>
+
+            <!-- Бургер кнопка (Mobile) -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Мобильное Меню -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 px-4 pt-3 pb-6 space-y-4">
+            <a href="#trainings" class="mobile-nav-link block text-base font-semibold text-gray-300 hover:text-brand-orange">Тренировки</a>
+            <a href="#trainers" class="mobile-nav-link block text-base font-semibold text-gray-300 hover:text-brand-orange">Тренеры</a>
+            <a href="#schedule" class="mobile-nav-link block text-base font-semibold text-gray-300 hover:text-brand-orange">Расписание</a>
+            <a href="#gallery" class="mobile-nav-link block text-base font-semibold text-gray-300 hover:text-brand-orange">Галерея</a>
+            <a href="#contacts" class="mobile-nav-link block text-base font-semibold text-gray-300 hover:text-brand-orange">Контакты</a>
+            <hr class="border-zinc-800 my-2">
+            <a href="tel:+996779609069" class="flex items-center gap-3 text-brand-orange font-bold text-base py-1">
+                <i class="fa-solid fa-phone"></i>
+                +996 779 609 069
+            </a>
+            <button onclick="openBookingModal()" class="w-full py-3 rounded-xl bg-brand-orange text-white font-bold text-center uppercase tracking-wider">
+                Записаться на тренировку
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION / ГЛАВНЫЙ БАННЕР ================= -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Задний фон с темным оверлеем -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop" 
+                 alt="Gym Background" 
+                 class="w-full h-full object-cover object-center filter opacity-30">
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange font-bold text-xs sm:text-sm uppercase tracking-widest mb-6">
+                    <i class="fa-solid fa-fire"></i> Премиальный фитнес-клуб
+                </div>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none mb-6">
+                    Преодолей <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-400 to-brand-neon text-glow">Свои Границы</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl font-light leading-relaxed">
+                    Первоклассное оборудование, профессиональная команда тренеров и авторские программы тренировок для достижения ваших максимальных результатов.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                    <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-orange to-brand-neon text-white font-extrabold text-base uppercase tracking-wider shadow-lg hover:glow-orange hover:scale-105 active:scale-95 transition-all">
+                        Первая тренировка бесплатно
+                    </button>
+                    <a href="https://wa.me/996779609069" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-zinc-900/80 border border-zinc-700 hover:border-emerald-500 text-white font-bold text-base flex items-center justify-center gap-3 hover:bg-zinc-800 transition-all">
+                        <i class="fa-brands fa-whatsapp text-emerald-500 text-xl"></i>
+                        Написать в WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Статистика снизу -->
+        <div class="absolute bottom-4 w-full z-10 hidden lg:block">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid grid-cols-4 gap-6 p-6 rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800">
+                    <div class="text-center border-r border-zinc-800">
+                        <div class="text-3xl font-black text-brand-orange">1500+ м²</div>
+                        <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Пространство клуба</div>
+                    </div>
+                    <div class="text-center border-r border-zinc-800">
+                        <div class="text-3xl font-black text-brand-orange">25+</div>
+                        <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Топ-тренеров</div>
+                    </div>
+                    <div class="text-center border-r border-zinc-800">
+                        <div class="text-3xl font-black text-brand-orange">40+</div>
+                        <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Видов программ</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-black text-brand-orange">24/7</div>
+                        <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Доступ в зал</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ТРЕНИРОВКИ / НАПРАВЛЕНИЯ ================= -->
+    <section id="trainings" class="py-20 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Направления</h2>
+                <p class="text-3xl sm:text-5xl font-black uppercase tracking-tight">Выбери свой <span class="text-brand-orange">Формат</span></p>
+                <div class="w-16 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Сетка тренировок -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Карточка 1 -->
+                <div class="group bg-brand-card rounded-2xl overflow-hidden border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Кроссфит" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-brand-orange text-black font-extrabold text-xs px-3 py-1 rounded-full uppercase">Сила</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Кроссфит & Силовой тренинг</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Высокоинтенсивные тренировки для развития выносливости, силы и рельефа мышц.</p>
+                            <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Рост мышечной массы</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Повышение выносливости</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Кроссфит')" class="w-full py-2.5 rounded-xl border border-brand-orange/40 hover:bg-brand-orange hover:text-white text-brand-orange font-bold text-sm transition-all">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="group bg-brand-card rounded-2xl overflow-hidden border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Бокс" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-amber-500 text-black font-extrabold text-xs px-3 py-1 rounded-full uppercase">Единоборства</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Бокс и Кикбоксинг</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Постановка удара, защита, отработка комбинаций и идеальная кардионагрузка.</p>
+                            <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Снятие стресса</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Навыки самообороны</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Бокс')" class="w-full py-2.5 rounded-xl border border-brand-orange/40 hover:bg-brand-orange hover:text-white text-brand-orange font-bold text-sm transition-all">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="group bg-brand-card rounded-2xl overflow-hidden border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Йога" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-teal-400 text-black font-extrabold text-xs px-3 py-1 rounded-full uppercase">Balance</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Йога & Стретчинг</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Гибкость, правильная осанка, снятие мышечных зажимов и гармония ума.</p>
+                            <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Развитие гибкости</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Восстановление суставов</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Йога')" class="w-full py-2.5 rounded-xl border border-brand-orange/40 hover:bg-brand-orange hover:text-white text-brand-orange font-bold text-sm transition-all">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="group bg-brand-card rounded-2xl overflow-hidden border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Персональный тренинг" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-rose-500 text-white font-extrabold text-xs px-3 py-1 rounded-full uppercase">VIP</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-brand-orange transition-colors">Персональный Тренинг</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Индивидуальная программа, контроль техники и план питания под ваши цели.</p>
+                            <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> 100% фокус на вас</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange"></i> Быстрый результат</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Персональный тренинг')" class="w-full py-2.5 rounded-xl border border-brand-orange/40 hover:bg-brand-orange hover:text-white text-brand-orange font-bold text-sm transition-all">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ТРЕНЕРЫ ================= -->
+    <section id="trainers" class="py-20 bg-zinc-950 border-y border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Команда</h2>
+                <p class="text-3xl sm:text-5xl font-black uppercase tracking-tight">Наши <span class="text-brand-orange">Тренеры</span></p>
+                <div class="w-16 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Тренер 1 -->
+                <div class="bg-brand-card rounded-2xl p-6 border border-zinc-800 hover:border-zinc-700 transition-all flex flex-col items-center text-center group">
+                    <div class="w-36 h-36 rounded-full overflow-hidden mb-6 border-4 border-brand-orange/30 group-hover:border-brand-orange transition-all shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=600&auto=format&fit=crop" 
+                             alt="Алексей Громов" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">Алексей Громов</h3>
+                    <p class="text-brand-orange font-semibold text-sm mb-3">Старший тренер / Кроссфит</p>
+                    <div class="px-3 py-1 bg-zinc-800 rounded-full text-xs text-gray-300 font-medium mb-4">
+                        Опыт работы: 8 лет
+                    </div>
+                    <p class="text-gray-400 text-sm italic mb-6">«Твоя единственная преграда — это ты сам. Каждая тренировка делает тебя сильнее!»</p>
+                    <button onclick="openBookingModal('Тренер: Алексей Громов')" class="mt-auto px-6 py-2 rounded-lg bg-zinc-800 hover:bg-brand-orange text-white font-semibold text-xs tracking-wider uppercase transition-all">
+                        Записаться к тренеру
+                    </button>
+                </div>
+
+                <!-- Тренер 2 -->
+                <div class="bg-brand-card rounded-2xl p-6 border border-zinc-800 hover:border-zinc-700 transition-all flex flex-col items-center text-center group">
+                    <div class="w-36 h-36 rounded-full overflow-hidden mb-6 border-4 border-brand-orange/30 group-hover:border-brand-orange transition-all shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=600&auto=format&fit=crop" 
+                             alt="Елена Власова" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">Елена Власова</h3>
+                    <p class="text-brand-orange font-semibold text-sm mb-3">Инструктор Йоги & Стретчинга</p>
+                    <div class="px-3 py-1 bg-zinc-800 rounded-full text-xs text-gray-300 font-medium mb-4">
+                        Опыт работы: 6 лет
+                    </div>
+                    <p class="text-gray-400 text-sm italic mb-6">«Баланс тела и ума — ключ к здоровью, долголетию и бесконечной энергии.»</p>
+                    <button onclick="openBookingModal('Тренер: Елена Власова')" class="mt-auto px-6 py-2 rounded-lg bg-zinc-800 hover:bg-brand-orange text-white font-semibold text-xs tracking-wider uppercase transition-all">
+                        Записаться к тренеру
+                    </button>
+                </div>
+
+                <!-- Тренер 3 -->
+                <div class="bg-brand-card rounded-2xl p-6 border border-zinc-800 hover:border-zinc-700 transition-all flex flex-col items-center text-center group">
+                    <div class="w-36 h-36 rounded-full overflow-hidden mb-6 border-4 border-brand-orange/30 group-hover:border-brand-orange transition-all shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop" 
+                             alt="Данияр Сатаров" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">Данияр Сатаров</h3>
+                    <p class="text-brand-orange font-semibold text-sm mb-3">Мастер спорта / Бокс</p>
+                    <div class="px-3 py-1 bg-zinc-800 rounded-full text-xs text-gray-300 font-medium mb-4">
+                        Опыт работы: 10 лет
+                    </div>
+                    <p class="text-gray-400 text-sm italic mb-6">«Дисциплина бьет класс. Поставлю удар и научу побеждать страх.»</p>
+                    <button onclick="openBookingModal('Тренер: Данияр Сатаров')" class="mt-auto px-6 py-2 rounded-lg bg-zinc-800 hover:bg-brand-orange text-white font-semibold text-xs tracking-wider uppercase transition-all">
+                        Записаться к тренеру
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= РАСПИСАНИЕ ================= -->
+    <section id="schedule" class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Календарь</h2>
+                <p class="text-3xl sm:text-5xl font-black uppercase tracking-tight">Расписание <span class="text-brand-orange">Занятий</span></p>
+                <div class="w-16 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Вкладки дней недели -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10" id="day-tabs">
+                <button onclick="filterSchedule('mon')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-brand-orange text-white shadow-md">ПН</button>
+                <button onclick="filterSchedule('tue')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-zinc-800 text-gray-400 hover:text-white">ВТ</button>
+                <button onclick="filterSchedule('wed')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-zinc-800 text-gray-400 hover:text-white">СР</button>
+                <button onclick="filterSchedule('thu')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-zinc-800 text-gray-400 hover:text-white">ЧТ</button>
+                <button onclick="filterSchedule('fri')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-zinc-800 text-gray-400 hover:text-white">ПТ</button>
+                <button onclick="filterSchedule('sat')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-zinc-800 text-gray-400 hover:text-white">СБ</button>
+                <button onclick="filterSchedule('sun')" class="day-tab px-5 py-2.5 rounded-xl font-bold text-sm bg-zinc-800 text-gray-400 hover:text-white">ВС</button>
+            </div>
+
+            <!-- Сетка слотов -->
+            <div class="bg-brand-card rounded-2xl border border-zinc-800 overflow-hidden p-4 sm:p-6 shadow-xl" id="schedule-container">
+                <!-- Динамически заполняется через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ГАЛЕРЕЯ КЛУБА ================= -->
+    <section id="gallery" class="py-20 bg-zinc-950 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Атмосфера</h2>
+                <p class="text-3xl sm:text-5xl font-black uppercase tracking-tight">Галерея <span class="text-brand-orange">Клуба</span></p>
+                <div class="w-16 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="relative group h-64 rounded-2xl overflow-hidden border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop" alt="Тренажерный зал" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Зал силовых тренажеров</span>
+                    </div>
+                </div>
+                <div class="relative group h-64 rounded-2xl overflow-hidden border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Зона кроссфита" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Кроссфит арена</span>
+                    </div>
+                </div>
+                <div class="relative group h-64 rounded-2xl overflow-hidden border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop" alt="Кардио зона" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Панорамная кардио-зона</span>
+                    </div>
+                </div>
+                <div class="relative group h-64 rounded-2xl overflow-hidden border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" alt="Боксерский ринг" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Профессиональный боксерский ринг</span>
+                    </div>
+                </div>
+                <div class="relative group h-64 rounded-2xl overflow-hidden border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop" alt="Зал групповых программ" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Зал йоги и групповых занятий</span>
+                    </div>
+                </div>
+                <div class="relative group h-64 rounded-2xl overflow-hidden border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=800&auto=format&fit=crop" alt="Раздевалки и отдых" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Комфортные раздевалки и фито-бар</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= КОНТАКТЫ И ЗАПИСЬ ================= -->
+    <section id="contacts" class="py-20 bg-zinc-950 relative border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Контактная информация -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Свяжитесь с нами</h2>
+                    <h3 class="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6">Готовы к <span class="text-brand-orange">Переменам?</span></h3>
+                    <p class="text-gray-400 text-base mb-8 leading-relaxed">
+                        Запишитесь на первую бесплатную тренировку прямо сейчас. Наш менеджер свяжется с вами в течение 15 минут!
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center text-brand-orange text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 uppercase font-semibold">Телефон для записи</div>
+                                <a href="tel:+996779609069" class="text-xl font-black hover:text-brand-orange transition-colors">+996 779 609 069</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 text-xl shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 uppercase font-semibold">Быстрый чат в WhatsApp</div>
+                                <a href="https://wa.me/996779609069" target="_blank" class="text-lg font-bold text-emerald-400 hover:underline">Написать в WhatsApp</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center text-brand-orange text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 uppercase font-semibold">Локация</div>
+                                <div class="text-base font-semibold">г. Бишкек, ул. Чуй 127 (Фитнес Центр)</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center text-brand-orange text-xl shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 uppercase font-semibold">Режим работы</div>
+                                <div class="text-base font-semibold">Пн - Сб: 07:00 - 23:00 | Вс: 09:00 - 21:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Форма записи -->
+                <div class="bg-brand-card p-8 rounded-3xl border border-zinc-800 shadow-2xl relative">
+                    <h4 class="text-2xl font-bold mb-6 text-center">Запись на <span class="text-brand-orange">Тренировку</span></h4>
+                    
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Ваше имя</label>
+                            <input type="text" required placeholder="Иван" 
+                                   class="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-brand-orange transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Номер телефона</label>
+                            <input type="tel" required placeholder="+996 ___ ___ ___" 
+                                   class="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-brand-orange transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Выберите направление</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-brand-orange transition-colors">
+                                <option value="Crossfit">Кроссфит & Силовой тренинг</option>
+                                <option value="Boxing">Бокс и Кикбоксинг</option>
+                                <option value="Yoga">Йога & Стретчинг</option>
+                                <option value="Personal">Персональный Тренинг</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-orange to-brand-neon text-white font-extrabold text-sm uppercase tracking-wider shadow-lg hover:glow-orange transition-all mt-4">
+                            Отправить заявку
+                        </button>
+                    </form>
+
+                    <!-- Сообщение об успешной отправке -->
+                    <div id="success-message" class="hidden absolute inset-0 bg-brand-card rounded-3xl p-8 flex flex-col items-center justify-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-3xl mb-4">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-2">Заявка принята!</h4>
+                        <p class="text-gray-400 text-sm mb-6">Мы перезвоним вам в ближайшее время на указанный номер.</p>
+                        <button onclick="resetForm()" class="px-6 py-2 rounded-xl bg-zinc-800 text-white font-bold text-xs uppercase">Закрыть</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ФУТЕР ================= -->
+    <footer class="bg-black py-10 border-t border-zinc-900 text-center sm:text-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center text-black font-black text-sm">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="text-lg font-black tracking-wider uppercase">PULSE<span class="text-brand-orange">FIT</span></span>
+            </div>
+
+            <div class="text-sm text-gray-500">
+                © 2026 PULSEFIT. Все права защищены.
+            </div>
+
+            <div class="flex items-center space-x-4 text-xl">
+                <a href="tel:+996779609069" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-gray-400 hover:text-brand-orange hover:bg-zinc-800 transition-all">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+                <a href="https://wa.me/996779609069" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-gray-400 hover:text-emerald-500 hover:bg-zinc-800 transition-all">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-gray-400 hover:text-brand-orange hover:bg-zinc-800 transition-all">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= МОДАЛЬНОЕ ОКНО ЗАПИСИ ================= -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-card w-full max-w-md rounded-3xl p-6 sm:p-8 border border-zinc-800 relative animate-fade-in shadow-2xl">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-2">Запись на тренировку</h3>
+            <p class="text-gray-400 text-xs mb-6">Оставьте контакты и мы забронируем за вами место.</p>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <input type="hidden" id="modal-target-input">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Имя</label>
+                    <input type="text" required placeholder="Ваше имя" class="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-brand-orange">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Телефон</label>
+                    <input type="tel" required placeholder="+996 ___ ___ ___" class="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-brand-orange">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-neon text-white font-extrabold text-sm uppercase tracking-wider shadow-lg hover:glow-orange transition-all">
+                    Подтвердить запись
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT ЛОГИКА ================= -->
+    <script>
+        // Данные расписания по дням
+        const scheduleData = {
+            mon: [
+                { time: '09:00 - 10:30', name: 'Утренний Кроссфит', trainer: 'Алексей Громов', category: 'Сила' },
+                { time: '11:00 - 12:00', name: 'Йога для начинающих', trainer: 'Елена Власова', category: 'Гибкость' },
+                { time: '18:00 - 19:30', name: 'Бокс (Взрослая группа)', trainer: 'Данияр Сатаров', category: 'Единоборства' },
+                { time: '19:30 - 21:00', name: 'Силовой Трейнинг', trainer: 'Алексей Громов', category: 'Сила' }
+            ],
+            tue: [
+                { time: '10:00 - 11:30', name: 'Стретчинг & МФР', trainer: 'Елена Власова', category: 'Гибкость' },
+                { time: '17:00 - 18:30', name: 'Кикбоксинг', trainer: 'Данияр Сатаров', category: 'Единоборства' },
+                { time: '19:00 - 20:30', name: 'Functional Training', trainer: 'Алексей Громов', category: 'Сила' }
+            ],
+            wed: [
+                { time: '09:00 - 10:30', name: 'Кроссфит Pro', trainer: 'Алексей Громов', category: 'Сила' },
+                { time: '18:00 - 19:00', name: 'Хатха Йога', trainer: 'Елена Власова', category: 'Гибкость' },
+                { time: '19:30 - 21:00', name: 'Бокс (Техника удара)', trainer: 'Данияр Сатаров', category: 'Единоборства' }
+            ],
+            thu: [
+                { time: '10:00 - 11:30', name: 'Женский Бокс', trainer: 'Данияр Сатаров', category: 'Единоборства' },
+                { time: '18:30 - 20:00', name: 'Силовой Кроссфит', trainer: 'Алексей Громов', category: 'Сила' }
+            ],
+            fri: [
+                { time: '09:00 - 10:30', name: 'Утренний Кроссфит', trainer: 'Алексей Громов', category: 'Сила' },
+                { time: '17:30 - 19:00', name: 'Йога на гибкость', trainer: 'Елена Власова', category: 'Гибкость' },
+                { time: '19:00 - 20:30', name: 'Спаринги (Бокс)', trainer: 'Данияр Сатаров', category: 'Единоборства' }
+            ],
+            sat: [
+                { time: '11:00 - 12:30', name: 'Weekend CrossFit Mix', trainer: 'Алексей Громов', category: 'Сила' },
+                { time: '13:00 - 14:30', name: 'Интенсивный Стретчинг', trainer: 'Елена Власова', category: 'Гибкость' }
+            ],
+            sun: [
+                { time: '12:00 - 13:30', name: 'Восстановительная Йога', trainer: 'Елена Власова', category: 'Гибкость' },
+                { time: '14:00 - 15:30', name: 'Персональные Спарринги', trainer: 'Данияр Сатаров', category: 'Единоборства' }
+            ]
+        };
+
+        // Переключение расписания
+        function filterSchedule(day) {
+            const tabs = document.querySelectorAll('.day-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-brand-orange', 'text-white', 'shadow-md');
+                tab.classList.add('bg-zinc-800', 'text-gray-400');
+            });
+
+            event.currentTarget.classList.remove('bg-zinc-800', 'text-gray-400');
+            event.currentTarget.classList.add('bg-brand-orange', 'text-white', 'shadow-md');
+
+            renderSchedule(day);
+        }
+
+        function renderSchedule(day) {
+            const container = document.getElementById('schedule-container');
+            const items = scheduleData[day] || [];
+
+            if(items.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-gray-500">На этот день занятий не запланировано.</div>`;
+                return;
+            }
+
+            let html = '<div class="space-y-4">';
+            items.forEach(item => {
+                html += `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-zinc-900/80 rounded-xl border border-zinc-800/80 hover:border-brand-orange/40 transition-all gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="px-3 py-2 bg-brand-orange/10 border border-brand-orange/30 text-brand-orange rounded-lg font-black text-sm shrink-0">
+                                ${item.time}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-white">${item.name}</h4>
+                                <div class="text-xs text-gray-400 flex items-center gap-2 mt-1">
+                                    <span><i class="fa-solid fa-user-ninja text-brand-orange"></i> ${item.trainer}</span>
+                                    <span>•</span>
+                                    <span class="text-brand-orange font-medium">${item.category}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('${item.name}')" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-zinc-800 hover:bg-brand-orange text-white text-xs font-bold uppercase transition-all">
+                            Записаться
+                        </button>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+        }
+
+        // Инициализация первой вкладки
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSchedule('mon');
+        });
+
+        // Мобильное меню toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if(mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars';
+            });
+        });
+
+        // Модальное окно
+        function openBookingModal(targetName = '') {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.remove('hidden');
+            if(targetName) {
+                document.getElementById('modal-target-input').value = targetName;
+            }
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('success-message').classList.remove('hidden');
+        }
+
+        function resetForm() {
+            document.getElementById('contact-form').reset();
+            document.getElementById('success-message').classList.add('hidden');
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Мы свяжемся с вами в кратчайшие сроки по номеру +996779609069.');
+            closeBookingModal();
+        }
+    </script>
+</body>
+</html>
