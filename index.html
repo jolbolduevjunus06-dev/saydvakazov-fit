@@ -1,117 +1,132 @@
-PULSEFIT Тренировки Тренеры Расписание Галерея Контакты 
-+996 779 609 069 Записаться 
-Тренировки Тренеры Расписание Галерея Контакты 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYDVAKAZOV FIT — Премиальный фитнес-клуб</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        header { background: #111; color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: #fff; text-decoration: none; margin-left: 15px; }
+        .hero { background: url('images/hero-bg.jpg') no-repeat center center/cover; height: 400px; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .container { max-width: 1100px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px; }
+        .trainers-grid { display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap; }
+        .trainer-card { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; width: 300px; text-align: center; border-radius: 8px; }
+        .trainer-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .btn { background: #e74c3c; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; font-size: 16px; }
+        .btn:hover { background: #c0392b; }
+        .error-message { color: #e74c3c; margin-top: 5px; font-weight: bold; display: none; }
+        .success-message { color: #27ae60; margin-top: 5px; font-weight: bold; display: none; }
+        footer { background: #111; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
 
-+996 779 609 069 Записаться на тренировку 
+    <header>
+        <h1>SAYDVAKAZOV FIT</h1>
+        <nav>
+            <a href="#trainers">Тренеры</a>
+            <a href="#booking">Записаться</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
 
-Премиальный фитнес-клуб 
-Преодолей Свои Границы 
-Первоклассное оборудование, профессиональная команда тренеров и авторские программы тренировок для достижения ваших максимальных результатов. 
-Первая тренировка бесплатно Написать в WhatsApp 
-1500+ м²
-Пространство клуба
-25+
-Топ-тренеров
-40+
-Видов программ
-24/7
-Доступ в зал
-Направления
-Выбери свой Формат
+    <section class="hero">
+        <h2>Преодолей Свои Границы</h2>
+        <p>Первоклассное оборудование, профессиональная команда и авторские программы тренировок.</p>
+    </section>
 
-Сила
-Кроссфит & Силовой тренинг
-Высокоинтенсивные тренировки для развития выносливости, силы и рельефа мышц.
-Рост мышечной массы
-Повышение выносливости
-Записаться 
+    <div class="container" id="trainers">
+        <h2>Наши Тренеры</h2>
+        <div class="trainers-grid">
+            <div class="trainer-card">
+                <!-- Картинка тренера из папки images -->
+                <img src="images/trainer-1.jpg" alt="Алексей Громов">
+                <h3>Алексей Громов</h3>
+                <p>Старший тренер / Кроссфит. Опыт работы: 8 лет.</p>
+            </div>
+            <div class="trainer-card">
+                <img src="images/trainer-2.jpg" alt="Елена Власова">
+                <h3>Елена Власова</h3>
+                <p>Инструктор Йоги & Стретчинга. Опыт работы: 6 лет.</p>
+            </div>
+            <div class="trainer-card">
+                <img src="images/trainer-3.jpg" alt="Данияр Сатаров">
+                <h3>Данияр Сатаров</h3>
+                <p>Мастер спорта / Бокс. Опыт работы: 10 лет.</p>
+            </div>
+        </div>
+    </div>
 
-Единоборства
-Бокс и Кикбоксинг
-Постановка удара, защита, отработка комбинаций и идеальная кардионагрузка.
-Снятие стресса
-Навыки самообороны
-Записаться 
+    <div class="container" id="booking">
+        <h2>Записаться на тренировку</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="userName">Ваше имя</label>
+                <input type="text" id="userName" required placeholder="Введите ваше имя">
+            </div>
+            
+            <div class="form-group">
+                <label for="userPhone">Номер телефона</label>
+                <input type="text" id="userPhone" required placeholder="+996...">
+                <!-- Ошибка будет показываться здесь, если в тексте номера есть буквы -->
+                <div id="phoneError" class="error-message">Ошибка: номер телефона должен содержать только цифры (можно с +).</div>
+            </div>
 
-Balance
-Йога & Стретчинг
-Гибкость, правильная осанка, снятие мышечных зажимов и гармония ума.
-Развитие гибкости
-Восстановление суставов
-Записаться 
+            <div class="form-group">
+                <label for="trainingType">Выберите направление</label>
+                <select id="trainingType">
+                    <option value="crossfit">Сила Кроссфит & Силовой тренинг</option>
+                    <option value="boxing">Единоборства Бокс и Кикбоксинг</option>
+                    <option value="yoga">Balance Йога & Стретчинг</option>
+                    <option value="vip">VIP Персональный Тренинг</option>
+                </select>
+            </div>
 
-VIP
-Персональный Тренинг
-Индивидуальная программа, контроль техники и план питания под ваши цели.
-100% фокус на вас
-Быстрый результат
-Записаться 
-Команда
-Наши Тренеры
+            <button type="submit" class="btn">Отправить заявку</button>
+            <div id="successMessage" class="success-message">Заявка принята! Мы перезвоним вам в ближайшее время.</div>
+        </form>
+    </div>
 
-Алексей Громов
-Старший тренер / Кроссфит
-Опыт работы: 8 лет 
-«Твоя единственная преграда — это ты сам. Каждая тренировка делает тебя сильнее!»
-Записаться к тренеру 
+    <div class="container" id="contacts">
+        <h2>Контакты</h2>
+        <p>📍 г. Бишкек, ул. Чуй 127 (Фитнес Центр)</p>
+        <p>📞 Телефон для записи: <a href="tel:+996779609069">+996 779 609 069</a></p>
+        <p>🕒 Режим работы: Пн - Сб: 07:00 - 23:00 | Вс: 09:00 - 21:00</p>
+    </div>
 
-Елена Власова
-Инструктор Йоги & Стретчинга
-Опыт работы: 6 лет 
-«Баланс тела и ума — ключ к здоровью, долголетию и бесконечной энергии.»
-Записаться к тренеру 
+    <footer>
+        <p>PULSEFIT © 2026. Все права защищены.</p>
+    </footer>
 
-Данияр Сатаров
-Мастер спорта / Бокс
-Опыт работы: 10 лет 
-«Дисциплина бьет класс. Поставлю удар и научу побеждать страх.»
-Записаться к тренеру 
-Календарь
-Расписание Занятий
-ПН ВТ СР ЧТ ПТ СБ ВС 
-Атмосфера
-Галерея Клуба
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Останавливаем стандартную отправку формы
 
-Зал силовых тренажеров 
+            const phoneInput = document.getElementById('userPhone').value.trim();
+            const phoneError = document.getElementById('phoneError');
+            const successMessage = document.getElementById('successMessage');
 
-Кроссфит арена 
+            // Регулярное выражение: проверяет, чтобы были только цифры (и опционально плюс в начале)
+            const phoneRegex = /^\+?[0-9]+$/;
 
-Панорамная кардио-зона 
+            if (!phoneRegex.test(phoneInput)) {
+                // Если введены буквы или лишние символы — показываем ошибку
+                phoneError.style.display = 'block';
+                successMessage.style.display = 'none';
+            } else {
+                // Если всё введено правильно — скрываем ошибку и показываем успех
+                phoneError.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Очищаем форму
+                document.getElementById('bookingForm').reset();
+            }
+        });
+    </script>
 
-Профессиональный боксерский ринг 
-
-Зал йоги и групповых занятий 
-
-Комфортные раздевалки и фито-бар 
-Свяжитесь с нами
-Готовы к Переменам?
-Запишитесь на первую бесплатную тренировку прямо сейчас. Наш менеджер свяжется с вами в течение 15 минут! 
-Телефон для записи
-+996 779 609 069 
-Быстрый чат в WhatsApp
-Написать в WhatsApp 
-Локация
-г. Бишкек, ул. Чуй 127 (Фитнес Центр)
-Режим работы
-Пн - Сб: 07:00 - 23:00 | Вс: 09:00 - 21:00
-Запись на Тренировку
-窗体顶端
-Ваше имя 
-Номер телефона 
-Выберите направление  
-Отправить заявку 
-窗体底端
-Заявка принята!
-Мы перезвоним вам в ближайшее время на указанный номер.
-Закрыть 
-PULSEFIT 
-© 2026 PULSEFIT. Все права защищены. 
-
-Запись на тренировку
-Оставьте контакты и мы забронируем за вами место.
-窗体顶端
-
-Имя 
-Телефон 
-Ошибка: введите корректный номер телефона.
-Подтвердить запись
+</body>
+</html>
