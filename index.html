@@ -8,7 +8,29 @@
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
         header { background: #111; color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
         nav a { color: #fff; text-decoration: none; margin-left: 15px; }
-        .hero { background: url('images/hero-bg.jpg') no-repeat center center/cover; height: 400px; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        
+        /* Измененный блок hero с синим цветом текста */
+        .hero { 
+            background: url('images/hero-bg.jpg') no-repeat center center/cover; 
+            height: 400px; 
+            color: #0056b3; /* Синий цвет текста */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            padding: 20px; 
+        }
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #0056b3; /* Синий цвет для заголовка Преодолей Свои Границы */
+        }
+        .hero p {
+            font-size: 18px;
+            color: #1c3d5a; /* Темно-синий цвет для описания под заголовком */
+        }
+
         .container { max-width: 1100px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px; }
         .trainers-grid { display: flex; gap: 20px; justify-content: space-around; flex-wrap: wrap; }
         .trainer-card { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; width: 300px; text-align: center; border-radius: 8px; }
@@ -43,7 +65,6 @@
         <h2>Наши Тренеры</h2>
         <div class="trainers-grid">
             <div class="trainer-card">
-                <!-- Картинка тренера из папки images -->
                 <img src="images/trainer-1.jpg" alt="Алексей Громов">
                 <h3>Алексей Громов</h3>
                 <p>Старший тренер / Кроссфит. Опыт работы: 8 лет.</p>
@@ -72,7 +93,6 @@
             <div class="form-group">
                 <label for="userPhone">Номер телефона</label>
                 <input type="text" id="userPhone" required placeholder="+996...">
-                <!-- Ошибка будет показываться здесь, если в тексте номера есть буквы -->
                 <div id="phoneError" class="error-message">Ошибка: номер телефона должен содержать только цифры (можно с +).</div>
             </div>
 
@@ -104,25 +124,20 @@
 
     <script>
         document.getElementById('bookingForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Останавливаем стандартную отправку формы
+            event.preventDefault();
 
             const phoneInput = document.getElementById('userPhone').value.trim();
             const phoneError = document.getElementById('phoneError');
             const successMessage = document.getElementById('successMessage');
 
-            // Регулярное выражение: проверяет, чтобы были только цифры (и опционально плюс в начале)
             const phoneRegex = /^\+?[0-9]+$/;
 
             if (!phoneRegex.test(phoneInput)) {
-                // Если введены буквы или лишние символы — показываем ошибку
                 phoneError.style.display = 'block';
                 successMessage.style.display = 'none';
             } else {
-                // Если всё введено правильно — скрываем ошибку и показываем успех
                 phoneError.style.display = 'none';
                 successMessage.style.display = 'block';
-                
-                // Очищаем форму
                 document.getElementById('bookingForm').reset();
             }
         });
